@@ -1,0 +1,10 @@
+<div class="fade-loading"><div><h1>Carregando Rodovias</h1></div></div>
+<div id="map" class="map"></div>
+<div id="information" class="information"></div>
+<div class="about"><div></div></div>
+<%= link_to 'me',root_path, remote: true, method: :get, class: "me" %>
+<script type="text/javascript">
+$(function(){
+  $(".me").click();
+})
+</script>

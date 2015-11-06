@@ -1,0 +1,8 @@
+$(".segmentos").html("");
+<% @via_caracteristics.each do |segmento| %>
+	$(".segmentos").append("<%=j render partial: 'segmento' , object: segmento %>");
+<% end %>
+$(".impor").html("<%= @importance %>");
+
+$(".more-impor").html("<%=j(link_to '+', rodovia_path(@rodovia, importance: @importance.to_i + 1) , remote: true, method: :get) %>")
+$(".less-impor").html("<%=j(link_to '-', rodovia_path(@rodovia, importance: @importance.to_i - 1) , remote: true, method: :get) %>")

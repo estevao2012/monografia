@@ -1,0 +1,26 @@
+
+default: &default
+  adapter: postgis
+  encoding: unicode
+  postgis_extension: postgis      
+  schema_search_path: "public,postgis"
+  pool: 5
+  username: root           
+  password: root
+  su_username: root     # a superuser for the database
+  su_password: root  # the superuser's password
+
+development:
+  <<: *default
+  database: segmentacao-rodovias_development
+test:
+  <<: *default
+  database: segmentacao-rodovias_test
+
+production:
+  <<: *default
+  database: segmentacao-rodovias_production
+  username: postgres
+  password: postgres
+  su_username: postgres     # a superuser for the database
+  su_password: postgres  # the superuser's password

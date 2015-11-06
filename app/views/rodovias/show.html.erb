@@ -1,0 +1,24 @@
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">BR <%= @rodovia.br %>
+		<span style="float: right"><%= link_to 'Adicionar Item' , new_rodovia_via_caracteristic_url(@rodovia), remote: true %></span>
+			<span style="float: right; margin-right: 40px">
+			Importância: 
+			<span class="impor">0</span>
+			<span class="more-impor"><%= link_to "+", rodovia_path(@rodovia, importance: @importance+1) , remote: true, method: :get %></span>
+			<span class="less-impor"><%= link_to "-", rodovia_path(@rodovia, importance: @importance-1) , remote: true, method: :get %></span>
+			</span>  
+		</h3>
+	</div>
+	<div class="panel-body">
+		
+		<div class="rodovia">
+			<div class="segmentos">
+				<% @via_caracteristics.each do |segmento| %>
+					<%= render partial: 'segmento' , object: segmento %>
+				<% end %>
+			</div>
+			<div class="kms"></div>
+		</div>
+	</div>
+</div>

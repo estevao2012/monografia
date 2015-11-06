@@ -1,0 +1,4 @@
+$(".segmentos").html("");
+<% @rodovia.via_caracteristics.each do |segmento| %>
+	$(".segmentos").append("<%= j( render partial: 'rodovias/segmento' , object: segmento) %>");
+<% end %>

@@ -1,0 +1,2 @@
+module ViaCaracteristicHelper
+end

@@ -1,0 +1,10 @@
+$(".fade-loading").show()
+var count = <%= @locals.count %>;
+<% @locals.each do |single| %>
+$.get("<%= get_geom_path(single.br) %>", function(data){
+  var item = createVector("#<%= random_color %>", data);
+  map.addLayer(item);
+  count--;
+  if(count == 0) $(".fade-loading").hide();    
+});
+<% end %>
