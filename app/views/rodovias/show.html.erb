@@ -3,8 +3,8 @@
 		<h3 class="panel-title">BR <%= @rodovia.br %>
 		<span style="float: right"><%= link_to 'Adicionar Item' , new_rodovia_via_caracteristic_url(@rodovia), remote: true %></span>
 			<span style="float: right; margin-right: 40px">
-			Importância: 
-			<span class="impor">0</span>
+			Zoom: 
+			<span class="impor">0</span>x
 			<span class="more-impor"><%= link_to "+", rodovia_path(@rodovia, importance: @importance+1) , remote: true, method: :get %></span>
 			<span class="less-impor"><%= link_to "-", rodovia_path(@rodovia, importance: @importance-1) , remote: true, method: :get %></span>
 			</span>  
