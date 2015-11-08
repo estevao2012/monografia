@@ -17,7 +17,7 @@ class RodoviasController < ApplicationController
 		importance ||= 0
 
 		importance = 0 if importance < 0
-		importance = 10 if importance > 10
+		importance = 10 if importance > 5
 		importance 
 	end
 end

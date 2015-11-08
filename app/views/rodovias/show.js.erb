@@ -3,6 +3,6 @@ $(".segmentos").html("");
 	$(".segmentos").append("<%=j render partial: 'segmento' , object: segmento %>");
 <% end %>
 $(".impor").html("<%= @importance %>");
-$(".segmentos").width("1<%= @importance%>0%");
+$(".segmentos").width("1<%= @importance * 2 %>0%");
 $(".more-impor").html("<%=j(link_to '+', rodovia_path(@rodovia, importance: @importance.to_i + 1) , remote: true, method: :get) %>")
 $(".less-impor").html("<%=j(link_to '-', rodovia_path(@rodovia, importance: @importance.to_i - 1) , remote: true, method: :get) %>")
