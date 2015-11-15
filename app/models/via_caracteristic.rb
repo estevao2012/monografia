@@ -27,13 +27,15 @@ class ViaCaracteristic < ActiveRecord::Base
 		dis_b = get_distance(geom_b)
 
 		if dis_a <= dis_b
-			self.geom     = geom_a
-			self.geom_b   = geom_b
-			self.distance = dis_a
+			self.geom     		= geom_a
+			self.geom_b   		= geom_b
+			self.distance 		= dis_a
+			self.distance_end = dis_b
 		else
 			self.geom_b       = geom_a
 			self.geom 	      = geom_b
-			self.distance_end = dis_b
+			self.distance 		= dis_b
+			self.distance_end = dis_a
 		end
 
 		get_km

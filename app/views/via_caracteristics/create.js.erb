@@ -2,3 +2,6 @@ $(".segmentos").html("");
 <% @rodovia.via_caracteristics.each do |segmento| %>
 	$(".segmentos").append("<%= j( render partial: 'rodovias/segmento' , object: segmento) %>");
 <% end %>
+$(".alert").hide();
+$(".new_via_caracteristic").get(0).reset();
+removePointLayers();

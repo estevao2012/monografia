@@ -1,4 +1,11 @@
-<div class="item-segmento" style="left: <%= segmento.distance * 100 %>%;">
+
+<% if segmento.distance_end %>
+<div class="group-item-seg" style="left: <%= segmento.distance * 100 %>%; width: <%= ((segmento.distance_end * 100) - (segmento.distance * 100)) %>%">
+<% else %>
+<div class="group-item-seg" style="left: <%= segmento.distance * 100 %>%;">
+<% end %>
+
+<div class="item-segmento" style="left: 0" data-left="<%= segmento.distance * 100 %>%;"> 
 	<div class="categoria">
 		<div>
 			<span class="cat-image"><%= image_tag segmento.via_caracteristic_category.avatar %></span>
@@ -10,10 +17,33 @@
 		<span></span>
 	</div>
 	<div class="informations" style="display: none;">
-		<h2><%= segmento.name %></h2>
+		<h2>Inicio: <%= segmento.name %></h2>
 		<h4><strong><%= segmento.via_caracteristic_category %></strong></h4>
 		<h4><strong><%= segmento.km.to_i %>KM</strong></h4>
 		<p><%= segmento.description %></p>
 	</div>
 
+</div>
+
+<% if segmento.distance_end %>
+	<div class="item-segmento" style="right: 0px;" data-left="<%=segmento.distance_end * 100%>">
+		<div class="categoria">
+			<div>
+				<span class="cat-image"><%= image_tag segmento.via_caracteristic_category.avatar %></span>
+				<span class="arrow"></span>
+			</div>
+		</div>
+
+		<div class="segmento" data-id="<%= segmento.id %>" data-level="<%= segmento.via_caracteristic_category.importance %>">
+			<span></span>
+		</div>
+		<div class="informations" style="display: none;">
+			<h2>Fim: <%= segmento.name %></h2>
+			<h4><strong><%= segmento.via_caracteristic_category %></strong></h4>
+			<h4><strong><%= segmento.km_end.to_i %>KM</strong></h4>
+			<p><%= segmento.description %></p>
+		</div>
+	</div>
+	<div class="linha-de-divisao"></div>
+<% end %>
 </div>

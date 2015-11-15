@@ -1,3 +1,28 @@
 // Place all the styles related to the via_caracteristic controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.linha-de-divisao{
+	display: block;
+	height: 10px;
+	border-top: 1px dashed black;
+	position: absolute;
+	top: 20px;
+	width: 94%;
+	z-index: 1;
+	margin: 0px 0 0 20px;
+	display: none;
+}
+
+.item-segmento{
+	z-index: 2;
+}
+
+.item-segmento:hover + .linha-de-divisao,
+.item-segmento:hover ~ .linha-de-divisao{
+	display: block;
+}
+
+.group-item-seg{
+	position: absolute;
+	height: 80px
+}

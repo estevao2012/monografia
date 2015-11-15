@@ -1,4 +1,5 @@
 var pointLayer;
+var pointLayerShift;
 
 var base_layer;
 var centeroid;
@@ -7,7 +8,21 @@ var viewOverall;
 
 var map;
 var select_points;
+var shiftDown = false;
 
+this.onkeydown = function(evt){
+    var evt2 = evt || window.event;
+    var keyCode = evt2.keyCode || evt2.which;       
+    if(keyCode==16)
+      shiftDown = true;
+}
+this.onkeyup = function(){
+    shiftDown = false;
+}
+function removePointLayers(){
+  map.removeLayer(pointLayer);
+  map.removeLayer(pointLayerShift);
+}
 function displayFeatureInfo(map, pixel) {
   var feature = map.forEachFeatureAtPixel(pixel, function(feature, layer) {
     return feature;
@@ -21,29 +36,54 @@ function displayFeatureInfo(map, pixel) {
 
   if(select_points){
 
-    map.removeLayer(pointLayer);
+    if(!shiftDown){
+      map.removeLayer(pointLayer);
+      map.removeLayer(pointLayerShift);
 
-    var position     = map.getCoordinateFromPixel(pixel);
-    var point        = new ol.geom.Point(position);
-    var pointFeature = new ol.Feature({
-      geometry: point,
-      name: "Location Marker"
-    });
+      var position     = map.getCoordinateFromPixel(pixel);
+      var point        = new ol.geom.Point(position);
+      var pointFeature = new ol.Feature({
+        geometry: point,
+        name: "Location Marker"
+      });
 
-    pointLayer = new ol.layer.Vector({
-      source: new ol.source.Vector({ features: [pointFeature] })
-    });
-    
-    npoint = point.clone().transform('EPSG:3857', 'EPSG:4326');
-    coord  = npoint.getCoordinates();
+      pointLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({ features: [pointFeature] })
+      });
+      
+      npoint = point.clone().transform('EPSG:3857', 'EPSG:4326');
+      coord  = npoint.getCoordinates();
 
-    $(".coord-x-form").val(coord[0]);
-    $(".coord-y-form").val(coord[1]);
+      $(".coord-x-form").val(coord[0]);
+      $(".coord-y-form").val(coord[1]);
 
-    $(".coord-xb-form").val(coord[0]);
-    $(".coord-yb-form").val(coord[1]);
+      $(".coord-xb-form").val(coord[0]);
+      $(".coord-yb-form").val(coord[1]);
 
-    map.addLayer(pointLayer);
+      map.addLayer(pointLayer);
+    }else{
+
+      map.removeLayer(pointLayerShift);
+
+      var positionShift     = map.getCoordinateFromPixel(pixel);
+      var pointShift        = new ol.geom.Point(positionShift);
+      var pointFeatureShift = new ol.Feature({
+        geometry: pointShift,
+        name: "Location Marker"
+      });
+
+      pointLayerShift = new ol.layer.Vector({
+        source: new ol.source.Vector({ features: [pointFeatureShift] })
+      });
+      
+      npointShift = pointShift.clone().transform('EPSG:3857', 'EPSG:4326');
+      coord       = npointShift.getCoordinates();
+
+      $(".coord-xb-form").val(coord[0]);
+      $(".coord-yb-form").val(coord[1]);
+
+      map.addLayer(pointLayerShift);
+    }
   }
 }
 
