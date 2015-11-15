@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 	def index
-		@locals = Rodovia.all.limit(10) unless params[:region]
+		@locals = Rodovia.all.limit(10)
 	end
 
 	def get_geom_by_br 
