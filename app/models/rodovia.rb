@@ -6,6 +6,6 @@ class Rodovia < ActiveRecord::Base
 		factory = RGeo::GeoJSON::EntityFactory.instance
 		feature = factory.feature(self.geom, self.br, {br: self.br, id: self.id})
 		json_edu = RGeo::GeoJSON.encode feature
-		json_edu
+		json_edu.to_json
 	end
 end

@@ -1,6 +1,31 @@
 class HomeController < ApplicationController
 	def index
-		@locals = Rodovia.all.limit(10)
+		minX = params[:left_top]
+		minY = params[:right_top]
+		maxX = params[:bottom_right]
+		maxY = params[:bottom_left]
+		exclude = params[:exclude]
+
+		if minX
+			factory 			 = RGeo::Geographic.spherical_factory(srid: 4326)
+			
+			point1 				 = factory.point(minX, minY)
+			point2 				 = factory.point(minX, maxY)
+			point3 				 = factory.point(maxX, maxY)
+			point4 				 = factory.point(maxX, minY)
+
+			line_string  	 = factory.line_string([point1, point2, point3, point4])
+			poligon 			 = factory.polygon(line_string)
+
+			sql 					= "ST_Contains('#{poligon}', rodovias.geom)"
+
+			ids_exclude  	= exclude.split(",").map{ |e| e.to_i unless e.empty?}
+
+			@locals = Rodovia.where(sql).where.not(id: ids_exclude)
+			
+		else
+			@locals = Rodovia.all.limit(10)
+		end
 	end
 
 	def get_geom_by_br 

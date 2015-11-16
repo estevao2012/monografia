@@ -1,6 +1,8 @@
+var count = <%= @locals.count %>;
 <% @locals.each do |single| %>
-  var item = createVector("#<%= random_color %>", <%= raw single.json_geom.to_json %>, "<%= single.id %>");
-  console.log(item);
-  if(item !== undefined)
-  	map.addLayer(item);
+  var item = createVector("#<%= random_color %>", <%= raw single.json_geom %>, "<%= single.id %>");
+  if(item !== undefined) map.addLayer(item);
+
+  count--;
+  if(count == 0) $(".fade-loading").hide();
 <% end %>
