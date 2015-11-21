@@ -21,7 +21,7 @@ class HomeController < ApplicationController
 
 			ids_exclude  	= exclude.split(",").map{ |e| e.to_i unless e.empty?}
 
-			@locals = Rodovia.where(sql).where.not(id: ids_exclude)
+			@locals = Rodovia.where(sql).where.not(id: ids_exclude).limit(50)
 			
 		else
 			@locals = Rodovia.all.limit(10)
@@ -38,6 +38,21 @@ class HomeController < ApplicationController
 
 		respond_to do |format|
 		  format.json  { render json: json_edu.to_json }
+		end
+	end
+
+	def get_all_geom
+		factory = RGeo::GeoJSON::EntityFactory.instance
+		
+		rodovias   = []
+		Rodovia.all.each do |single|
+			feature  = factory.feature(single.geom, single.br, {br: single.br, id: single.id})
+			json_edu = RGeo::GeoJSON.encode(feature).to_json
+			rodovias << json_edu
+		end 
+
+		respond_to do |format|
+		  format.json  { render json: rodovias }
 		end
 	end
 
