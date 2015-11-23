@@ -34,28 +34,29 @@ function displayFeatureInfo(map, pixel) {
     return feature;
   });
 
-  var default_style = new ol.style.Style({
-    fill: new ol.style.Fill({
-      color: 'rgba(255, 255, 255, 0.6)'
-    }),
-    stroke: new ol.style.Stroke({
-      color: '#319FD3',
-      width: 1
-    }),
-    text: new ol.style.Text({
-      font: '12px Calibri,sans-serif',
-      fill: new ol.style.Fill({
-        color: '#000'
-      }),
-      stroke: new ol.style.Stroke({
-        color: '#fff',
-        width: 3
-      })
-    })
-  });
+  // var default_style = new ol.style.Style({
+  //   fill: new ol.style.Fill({
+  //     color: 'rgba(255, 255, 255, 0.6)'
+  //   }),
+  //   stroke: new ol.style.Stroke({
+  //     color: '#319FD3',
+  //     width: 1
+  //   }),
+  //   text: new ol.style.Text({
+  //     font: '12px Calibri,sans-serif',
+  //     fill: new ol.style.Fill({
+  //       color: '#000'
+  //     }),
+  //     stroke: new ol.style.Stroke({
+  //       color: '#fff',
+  //       width: 3
+  //     })
+  //   })
+  // });
 
 
   if (feature) {
+    var default_style = feature.getStyle();
     for(var key in vectors){
       if(feature.get("id") != key){
         element = vectors[key];

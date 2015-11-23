@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  uf: MyString
+  populacao: MyString
+  pib: MyString
+  estado_id: MyString
+  codigo_ibg: MyString
+  geom: 
+
+two:
+  nome: MyString
+  uf: MyString
+  populacao: MyString
+  pib: MyString
+  estado_id: MyString
+  codigo_ibg: MyString
+  geom: 
