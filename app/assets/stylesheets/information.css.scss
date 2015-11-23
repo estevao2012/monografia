@@ -46,12 +46,14 @@
 			overflow: hidden;
 			width: 100%;
 			position: relative;
-			height: 120px;
+			height: 90px;
 			background: image-url("bg_segmentos.png") repeat-x center center;
+			background-size: 100% 10px;
 			
 			.item-segmento{
-				display: table;
+				display: block;
 				position: absolute;
+				width: 26px;
 
 				.categoria{
 					width: 100%;
@@ -59,12 +61,12 @@
 					span{
 						display: block;
 						&.cat-image{
-							border: 4px solid black;
-							width: 30px;
-							height: 34px;
-							background: white;
-							overflow: hidden;
-							margin: auto;
+							border: 2px solid black;
+					    width: 26px;
+					    height: 26px;
+					    background: white;
+					    overflow: hidden;
+					    margin: auto;
 							img{
 								width: 100%;
 								height: auto;
@@ -75,10 +77,10 @@
 							
 							  width: 0;
 							  height: 0;
-							  border-top: 8px solid black;
-							  border-bottom: 8px solid transparent;
-							  border-right: 8px solid transparent;
-							  border-left: 8px solid transparent;
+							  border-top: 7px solid black;
+							  border-bottom: 3px solid transparent;
+							  border-right: 7px solid transparent;
+							  border-left: 7px solid transparent;
 							  margin: auto;
 						}
 
@@ -86,19 +88,19 @@
 
 				}
 				.segmento{
-					width: 40px;
+					width: 100%;
 					display: block;
 					float: left;
-					min-height: 30px;
+					min-height: 10px;
 					cursor: pointer;
 					span{
-						width: 22px;
-						height: 22px;
-						border: 5px solid black;
-						border-radius: 100%;
-						display: block;
-						margin: auto;
-						background-color: white;
+						width: 15px;
+				    height: 15px;
+				    border: 2px solid black;
+				    border-radius: 100%;
+				    display: block;
+				    margin: auto;
+				    background-color: white;
 					}
 				}
 				.principal-referencia{
@@ -129,7 +131,7 @@
 	top: 0px;
 	width: 30%;
 	background: white;
-	padding: 30px;
+	padding: 10px;
 	border-radius: 0px 0px 0 20px;
 }
 

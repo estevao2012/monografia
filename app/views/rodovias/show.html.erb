@@ -13,7 +13,7 @@
 	<div class="panel-body">
 		
 		<div class="rodovia">
-			<div class="segmentos">
+			<div class="segmentos" style="width: <%= ((@importance+1) * 2) * 100 %>%;" >
 				<% @via_caracteristics.each do |segmento| %>
 					<%= render partial: 'segmento' , object: segmento %>
 				<% end %>

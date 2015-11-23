@@ -75,7 +75,7 @@ Rodovia.all.each do |p_rodovia|
 			if geom_city_intersect.as_text != "GEOMETRYCOLLECTION EMPTY"
 				if geom_city_intersect.geometry_type == RGeo::Feature::MultiLineString
 
-					puts geom_city_intersect.geometry_type
+					# puts geom_city_intersect.geometry_type
 
 					first_linestring = geom_city_intersect.geometry_n(0)
 					last_linestring  = geom_city_intersect.geometry_n(geom_city_intersect.size-1)
@@ -93,11 +93,11 @@ Rodovia.all.each do |p_rodovia|
 					via_caracteristic.process_distance entry_point, exit_point
 					via_caracteristic.save
 
-					puts via_caracteristic.name
+					# puts via_caracteristic.name
 
 				elsif geom_city_intersect.geometry_type == RGeo::Feature::LineString
 
-					puts geom_city_intersect.geometry_type
+					# puts geom_city_intersect.geometry_type
 
 					entry_point = geom_city_intersect.point_n(0)
 					exit_point  = geom_city_intersect.point_n( geom_city_intersect.num_points-1 )
@@ -112,13 +112,13 @@ Rodovia.all.each do |p_rodovia|
 					via_caracteristic.process_distance entry_point, exit_point
 					via_caracteristic.save
 
-					puts via_caracteristic.name
+					# puts via_caracteristic.name
 
 				end
 			end
 
 		rescue => e
-			p e.message
+			# p e.message
 		end
 	end
 
@@ -135,7 +135,7 @@ Rodovia.all.each do |p_rodovia|
 
 				if my_geom.geometry_type == RGeo::Feature::MultiPoint || my_geom.geometry_type == RGeo::Feature::Point
 
-					p my_geom.geometry_type
+					# p my_geom.geometry_type
 
 					if my_geom.geometry_type == RGeo::Feature::MultiPoint
 						geom 	 = my_geom.geometry_n(0) 
@@ -155,12 +155,12 @@ Rodovia.all.each do |p_rodovia|
 					via_caracteristic.process_distance(geom, geom_b)
 					via_caracteristic.save
 
-					puts via_caracteristic.name
+					# puts via_caracteristic.name
 				else 
 					# p "nothing"
 				end
 			rescue => e
-				p e.message
+				# p e.message
 			end
 			
 		end

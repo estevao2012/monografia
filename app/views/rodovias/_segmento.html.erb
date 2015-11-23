@@ -1,5 +1,5 @@
 
-<% if segmento.distance_end %>
+<% if segmento.distance_end && (segmento.distance != segmento.distance_end ) %>
 	<div class="group-item-seg" style="left: <%= segmento.distance * 100 %>%; width: <%= ((segmento.distance_end * 100) - (segmento.distance * 100)) %>%">
 <% else %>
 	<div class="group-item-seg" style="left: <%= segmento.distance * 100 %>%;">
@@ -17,7 +17,7 @@
 		<span></span>
 	</div>
 	<div class="informations" style="display: none;">
-		<h2><%= segmento.distance_end ?  "Inicio:" : "" %> <%= segmento.name %></h2>
+		<h2><%= (segmento.distance_end && (segmento.distance != segmento.distance_end )) ?  "Inicio:" : "" %> <%= segmento.name %></h2>
 		<h4><strong><%= segmento.via_caracteristic_category %></strong></h4>
 		<h4><strong><%= segmento.km.to_i %>KM</strong></h4>
 		<p><%= segmento.description %></p>
@@ -25,7 +25,7 @@
 
 </div>
 
-<% if segmento.distance_end %>
+<% if segmento.distance_end  && (segmento.distance != segmento.distance_end )%>
 	<div class="item-segmento" style="right: 0px;" data-left="<%=segmento.distance_end * 100%>">
 		<div class="categoria">
 			<div>
