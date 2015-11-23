@@ -2,4 +2,19 @@
 <div id="map" class="map"></div>
 <div id="information" class="information"></div>
 <div class="about"><div></div></div>
-<%= link_to 'me',root_path, remote: true, method: :get, class: "me" %>
+<%#= link_to 'me',root_path, remote: true, method: :get, class: "me" %>
+<script>
+	var count = <%= @locals.count %>;
+	<% @locals.each do |single| %>
+	$.get('/get_geom_by_br/<%= single.br %>', function(object, index){
+		console.log(object);
+	  var item = createVector("#<%= random_color %>", object, "<%= single.id %>");
+	  if(item !== undefined)
+	  	map.addLayer(item);
+
+	  count--;
+	  if(count == 0)
+	  	$(".fade-loading").hide();
+	})
+	<% end %>
+</script>

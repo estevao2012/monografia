@@ -21,10 +21,10 @@ class HomeController < ApplicationController
 
 			ids_exclude  	= exclude.split(",").map{ |e| e.to_i unless e.empty?}
 
-			@locals = Rodovia.where(sql).where.not(id: ids_exclude).limit(50)
+			@locals = Rodovia.where(sql).where.not(id: ids_exclude)
 			
 		else
-			@locals = Rodovia.all.limit(10)
+			@locals = Rodovia.all
 		end
 	end
 

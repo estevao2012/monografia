@@ -181,7 +181,7 @@ $(function(){
 
   viewOverall = new ol.View({
       center: centeroid,
-      zoom: 6
+      zoom: 5
   });
 
 
@@ -201,15 +201,14 @@ $(function(){
 
   
 
-  map.on("moveend", function(da){
-    $(".fade-loading").show();
-    extent = map.getView().calculateExtent(map.getSize());
-    region = ol.proj.transformExtent(extent, 'EPSG:3857', 'EPSG:4326');
-    var url = "/?left_top="+region[0]+"&right_top="+region[1]+"&bottom_right="+region[2]+"&bottom_left="+region[3]+"&exclude="+Object.keys(vectors);
-    $(".me").attr('href', url);
-    $(".me").click();
-
-  })
+  // map.on("moveend", function(da){
+  //   $(".fade-loading").show();
+  //   extent = map.getView().calculateExtent(map.getSize());
+  //   region = ol.proj.transformExtent(extent, 'EPSG:3857', 'EPSG:4326');
+  //   var url = "/?left_top="+region[0]+"&right_top="+region[1]+"&bottom_right="+region[2]+"&bottom_left="+region[3]+"&exclude="+Object.keys(vectors);
+  //   $(".me").attr('href', url);
+  //   $(".me").click();
+  // })
 
   $(document).on('click', ".add-point", function(){
     var id = $(this).data('id');
