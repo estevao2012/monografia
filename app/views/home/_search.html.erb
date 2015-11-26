@@ -1,0 +1,11 @@
+<form>
+<div class="form-group">
+<label>Busque a rodovia por nome</label>
+<select name="rodovia"  class="rodovia-selector form-control">
+	<option value=""></option>
+	<% @locals.each do |rodovia| %>
+		<option value="<%= rodovia.id %>"> BR<%= rodovia.br %></option>
+	<% end %>
+</select>
+</div>
+</form>

@@ -1,24 +1,42 @@
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">BR <%= @rodovia.br %>
-		<span style="float: right"><%= link_to 'Adicionar Item' , new_rodovia_via_caracteristic_url(@rodovia),class: "add-point", remote: true, data: {id: @rodovia.id } %></span>
+			<span style="float: right"><%= link_to 'Adicionar Item' , new_rodovia_via_caracteristic_url(@rodovia),class: "add-point", remote: true, data: {id: @rodovia.id } %></span>
 			<span style="float: right; margin-right: 40px">
-			Zoom: 
-			<span class="impor">0</span>x
-			<span class="more-impor"><%= link_to "+", rodovia_path(@rodovia, importance: @importance+1) , remote: true, method: :get %></span>
-			<span class="less-impor"><%= link_to "-", rodovia_path(@rodovia, importance: @importance-1) , remote: true, method: :get %></span>
+				Zoom: 
+				<span class="impor">0</span>x
+				<span class="more-impor"><%= link_to "+", rodovia_path(@rodovia, importance: @importance+1) , remote: true, method: :get %></span>
+				<span class="less-impor"><%= link_to "-", rodovia_path(@rodovia, importance: @importance-1) , remote: true, method: :get %></span>
 			</span>  
 		</h3>
 	</div>
 	<div class="panel-body">
-		
-		<div class="rodovia">
-			<div class="segmentos" style="width: <%= ((@importance+1) * 2) * 100 %>%;" >
-				<% @via_caracteristics.each do |segmento| %>
-					<%= render partial: 'segmento' , object: segmento %>
+		<div class="col-sm-12">
+			<h3>Filtro</h3>
+			<div class="filtro">
+				<% @categories.each do |category| %>
+				<div class="group-category" style="float: left; margin-right: 10px;">
+					<label style="font-size: 10px;">
+						<input type="checkbox" value="<%= category.id %>">
+						<%= category.name %>
+					</label>
+				</div>
 				<% end %>
 			</div>
-			<div class="kms"></div>
+		</div>
+		<br clear="all">
+		<div class="col-sm-12">
+			<h3>Pontos de Referência</h3>
+			<div class="row">
+				<div class="rodovia">
+					<div class="segmentos" style="width: <%= ((@importance+1) * 2) * 100 %>%;" >
+						<% @via_caracteristics.each do |segmento| %>
+						<%= render partial: 'segmento' , object: segmento %>
+						<% end %>
+					</div>
+					<div class="kms"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

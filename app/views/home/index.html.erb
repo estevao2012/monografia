@@ -2,7 +2,9 @@
 <div id="map" class="map"></div>
 <div id="information" class="information"></div>
 <div class="about"><div></div></div>
-<%#= link_to 'me',root_path, remote: true, method: :get, class: "me" %>
+<div class="search"><div>
+	<%= render 'search' %>
+</div></div>
 <script>
 	var count = <%= @locals.count %>;
 	<% @locals.each do |single| %>

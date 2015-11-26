@@ -32,12 +32,13 @@
 	  	}
 			.panel-body{
 				height: 94%;
+				padding: 0;
 			}
 	}
 
 	.rodovia{
 		width: 100%;
-		height: 140px;
+		height: 100px;
 		display: inline-block;
 		position: relative;
 		overflow-x: scroll;
@@ -125,14 +126,18 @@
 
 	}
 }
-.about{
+.about, .search{
 	position: fixed;
 	right: 0px;
 	top: 0px;
 	width: 30%;
 	background: white;
-	padding: 10px;
+	padding: 20px;
 	border-radius: 0px 0px 0 20px;
+}
+.search{
+	left: 0px;
+	border-radius: 0px 0px 20px 0px;
 }
 
 .kms{

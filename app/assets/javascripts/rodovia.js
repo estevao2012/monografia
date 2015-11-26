@@ -34,27 +34,6 @@ function displayFeatureInfo(map, pixel) {
     return feature;
   });
 
-  // var default_style = new ol.style.Style({
-  //   fill: new ol.style.Fill({
-  //     color: 'rgba(255, 255, 255, 0.6)'
-  //   }),
-  //   stroke: new ol.style.Stroke({
-  //     color: '#319FD3',
-  //     width: 1
-  //   }),
-  //   text: new ol.style.Text({
-  //     font: '12px Calibri,sans-serif',
-  //     fill: new ol.style.Fill({
-  //       color: '#000'
-  //     }),
-  //     stroke: new ol.style.Stroke({
-  //       color: '#fff',
-  //       width: 3
-  //     })
-  //   })
-  // });
-
-
   if (feature) {
     var default_style = feature.getStyle();
     for(var key in vectors){
@@ -68,7 +47,7 @@ function displayFeatureInfo(map, pixel) {
 
     $.get("/rodovias/" + feature.get("id"), function(data){
       $("#information").html(data);
-      feature.setStyle(new ol.style.Style({
+      var style = new ol.style.Style({
                           stroke: new ol.style.Stroke({
                             color: "#8B0000",
                             width: 3
@@ -76,7 +55,8 @@ function displayFeatureInfo(map, pixel) {
                           fill: new ol.style.Fill({
                             color: 'rgba(0, 0, 255, 0.8)'
                           })
-                      }));
+                      });
+      feature.setStyle(style);
     });
 
 
@@ -171,6 +151,7 @@ function createPoint(color, object){
 
 $(function(){
   select_points = false;
+
   $(document).on('submit', "#new_via_caracteristic", function(){
     $(".hide-success").show();
   })
@@ -199,32 +180,35 @@ $(function(){
     condition: ol.events.condition.mouseMove
   }));
 
-  
-
-  // map.on("moveend", function(da){
-  //   $(".fade-loading").show();
-  //   extent = map.getView().calculateExtent(map.getSize());
-  //   region = ol.proj.transformExtent(extent, 'EPSG:3857', 'EPSG:4326');
-  //   var url = "/?left_top="+region[0]+"&right_top="+region[1]+"&bottom_right="+region[2]+"&bottom_left="+region[3]+"&exclude="+Object.keys(vectors);
-  //   $(".me").attr('href', url);
-  //   $(".me").click();
-  // })
-
   $(document).on('click', ".add-point", function(){
     var id = $(this).data('id');
-    for(var key in vectors){
-      if(key != id){
-        element = vectors[key];
-        element.setVisible(false);
-      }
-    };
+    hideAllVectorsExceptId(id);    
   });
 
-  $(document).on('click', '.close-this, .btn-create-ref', function(){
-    for(var key in vectors){
-      element = vectors[key];
-      element.setVisible(true);
-    };
+  $(document).on('change', '.rodovia-selector', function(){
+    var id = $(this).val();
+    showAllVectors();
+    if(id != "")
+      hideAllVectorsExceptId(id); 
   })
 
+  $(document).on('click', '.close-this, .btn-create-ref', function(){
+    showAllVectors();
+  })
 });
+
+function hideAllVectorsExceptId(id){
+  for(var key in vectors){
+    if(key != id){
+      element = vectors[key];
+      element.setVisible(false);
+    }
+  };
+}
+
+function showAllVectors(){
+  for(var key in vectors){
+    element = vectors[key];
+    element.setVisible(true);
+  };
+}

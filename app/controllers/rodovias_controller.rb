@@ -1,7 +1,7 @@
 class RodoviasController < ApplicationController
 	def show
 		@importance 				= importance_params
-
+		@categories 				= ViaCaracteristicCategory.all
 		@rodovia 						= Rodovia.find(params[:id])
 
 		@via_caracteristics = @rodovia.via_caracteristics
