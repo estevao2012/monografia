@@ -4,5 +4,4 @@ $(".segmentos").html("");
 <% end %>
 $(".impor").html("<%= @importance %>");
 $(".segmentos").width("<%= ((@importance+1) * 2) * 100 %>%");
-$(".more-impor").html("<%=j(link_to '+', rodovia_path(@rodovia, importance: @importance.to_i + 1) , remote: true, method: :get) %>")
-$(".less-impor").html("<%=j(link_to '-', rodovia_path(@rodovia, importance: @importance.to_i - 1) , remote: true, method: :get) %>")
+$(".importance-field").val("<%= @importance %>");

@@ -1,12 +1,14 @@
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">BR <%= @rodovia.br %>
-			<span style="float: right"><%= link_to 'Adicionar Item' , new_rodovia_via_caracteristic_url(@rodovia),class: "add-point", remote: true, data: {id: @rodovia.id } %></span>
+			<span style="float: right">
+				<%= link_to 'Adicionar Item' , new_rodovia_via_caracteristic_url(@rodovia),class: "add-point", remote: true, data: {id: @rodovia.id } %>
+			</span>
 			<span style="float: right; margin-right: 40px">
 				Zoom: 
 				<span class="impor">0</span>x
-				<span class="more-impor"><%= link_to "+", rodovia_path(@rodovia, importance: @importance+1) , remote: true, method: :get %></span>
-				<span class="less-impor"><%= link_to "-", rodovia_path(@rodovia, importance: @importance-1) , remote: true, method: :get %></span>
+				<span class="more-impor"><%= link_to "+", "#" %></span>
+				<span class="less-impor"><%= link_to "-", "#" %></span>
 			</span>  
 		</h3>
 	</div>
@@ -14,13 +16,18 @@
 		<div class="col-sm-12">
 			<h3>Filtro</h3>
 			<div class="filtro">
-				<% @categories.each do |category| %>
-				<div class="group-category" style="float: left; margin-right: 10px;">
-					<label style="font-size: 10px;">
-						<input type="checkbox" value="<%= category.id %>">
-						<%= category.name %>
-					</label>
-				</div>
+				<%= form_tag(rodovia_path(@rodovia), remote: true, method: :get, class: "form-filter") do  %>
+					
+					<% @categories.each do |category| %>
+						<div class="group-category" style="float: left; margin-right: 10px;">
+							<label style="font-size: 10px;">
+								<input type="checkbox" class="categories" name="categories[]" value="<%= category.id %>" <%= @used_categories.include?(category.id) ? "checked" : "" %>>
+								<%= category.name %>
+							</label>
+						</div>
+					<% end %>
+
+					<input type="hidden" name="importance" value="<%= @importance %>" class="importance-field">
 				<% end %>
 			</div>
 		</div>

@@ -9,7 +9,6 @@
 	var count = <%= @locals.count %>;
 	<% @locals.each do |single| %>
 	$.get('/get_geom_by_br/<%= single.br %>', function(object, index){
-		console.log(object);
 	  var item = createVector("#<%= random_color %>", object, "<%= single.id %>");
 	  if(item !== undefined)
 	  	map.addLayer(item);
